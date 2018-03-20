@@ -41,7 +41,9 @@ da 82 07 00     block length (492250 bytes here)
 
 - `Extracted/barrel_2_dust.yaml.dvpl` a sample `.dvpl` file extracted from a `.dvpk` file (same `.dvpk` file as the above sample)
 
-- `Converted/test.lz4`, `Converted/test2.lz4` both files are converted and compressed with LZ4_HC format, using `dvpl_convert.js` to convert them. Both came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
+- `Converted/test.lz4` converted and compressed with LZ4_HC format, using an old version of `dvpl_convert.js` to convert them. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
+
+- `Converted/test2.lz4` converted and compressed with LZ4_HC format, using `dvpl_convert.js` to convert them, difference between this and `test.lz4` is that this is converted as a Block, instead of a stream, so no header/footer tags. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
 
 
 ## libraries used
