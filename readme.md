@@ -25,7 +25,7 @@ PackFormat::LitePack::Footer footer = { sizeUncompressed,
                                         compressionType,
                                         PackFormat::FILE_MARKER_LITE };
 ```
-- The first 11 bytes in lz4 files are the Frame Header and Block Length 
+- The first 11 bytes in lz4 files are the Frame Header and Block Length (which are stripped and not present in dvpl files.)
 
 ```
 04 22 4d 18     magic number
