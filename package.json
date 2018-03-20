@@ -1,0 +1,24 @@
+{
+  "name": "dvpl-test",
+  "version": "1.0.0",
+  "description": "converter aims to be able to directly convert between .dvpl and standard non-dvpl files.",
+  "main": "dvpl_convert.js",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "lz4": "^0.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maddoxkkm/dvpl_converter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maddoxkkm/dvpl_converter/issues"
+  },
+  "homepage": "https://github.com/Maddoxkkm/dvpl_converter#readme"
+}
