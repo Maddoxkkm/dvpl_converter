@@ -1,0 +1,55 @@
+emitter:
+    emissionAngle: 60.000000
+    emissionRange: 50.000000
+    emissionVector: [0.100000, -0.010000, 1.000000]
+    emissionVectorInverted: true
+    name: "dust"
+    radius: 2.000000
+    shortEffect: false
+    size: [0.000000, 0.000000, 0.000000]
+    type: "point"
+layer0:
+    activeLODS: [0, 1, 0, 0]
+    alphaOverLife: [0.000000, 0.000000, 0.050000, 0.500000, 0.852400, 0.000000, 0.990000, 0.000000]
+    angle: 180.000000
+    angleVariation: 180.000000
+    blending: 1
+    colorOverLife: [0.000000, [248.844406, 217.638107, 162.283997, 255.000000], 0.987900, [255.000000, 226.062302, 178.498001, 255.000000]]
+    degradeStrategy: 2
+    deltaTime: 0.000000
+    deltaVariation: 0.000000
+    effectFormat: 1
+    enableFog: true
+    enableFrameBlend: false
+    endTime: 0.300000
+    force0: [0.000000, [0.000000, 0.000000, -2.000000], 0.300000, [0.010000, 0.000000, 0.000000], 0.900000, [0.000000, 0.000000, -0.938700]]
+    forceCount: 1
+    frameOverLifeEnabled: false
+    frameOverLifeFPS: 0.000000
+    inheritPosition: false
+    isLong: false
+    isLooped: false
+    layerType: "particles"
+    life: 3.000000
+    loopEndTime: 6.000000
+    loopSpriteAnimation: true
+    loopVariation: 0.000000
+    name: "dust"
+    number: 30.000000
+    particleOrientation: 1
+    pivotPoint: [0.000000, 0.000000]
+    randomFrameOnStart: false
+    randomSpinDirection: false
+    scaleVelocityBase: 1.000000
+    scaleVelocityFactor: 0.000000
+    size: [1.500000, 1.500000]
+    sizeOverLifeXY: [0.000000, [1.000000, 1.000000], 0.449100, [2.570500, 2.570500], 0.900000, [4.240400, 4.240400]]
+    sizeVariation: [1.000000, 1.000000]
+    spin: [0.000000, 5.000000, 0.300000, 0.000000]
+    spinOverLife: [0.000000, 1.000000, 0.300000, 0.000000]
+    sprite: "../../../../../Data/Gfx/Particles/alpha/o2SMOKEB_one"
+    startTime: 0.000000
+    type: "layer"
+    velocity: 1.000000
+    velocityOverLife: [0.000000, 4.670200, 0.052500, 0.587800, 0.420000, 0.100000, 0.900000, 0.000000]
+    velocityVariation: 1.000000
