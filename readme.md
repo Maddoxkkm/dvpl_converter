@@ -32,6 +32,8 @@ there are a few things that need to be addressed:
         
         - 2: LZ4_HC (format used in all compressed `.dvpl` files from SmartDLC)
         
+    - 32-bit (4 byte) Magic Number represents "DVPL" literals in utf8 encoding, encoded in big-Endian.
+        
 ## Files in the Repo for reference:
 
 - `Extracted/barrel_2_dust.yaml` a sample file extracted from a `.dvpk` file, which is the archive format of the Smart DLC package
