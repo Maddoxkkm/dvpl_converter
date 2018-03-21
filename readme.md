@@ -15,40 +15,26 @@ there are a few things that need to be addressed:
 ## Things that have been identified:
 
 - DVPL files are non-dvpl files compressed in LZ4_HC format, with frame header stripped and appended some footer instead (see below)
-
-- The last 20 bytes in DVPL files are in the following format (code extracted from Dava Engine), assumption is that each attribute listed below is 4 bytes long:
-
+- The last 20 bytes in DVPL files are in the following format:
     - 32-bit (4 byte) input size in Byte, encoded in little-Endian;
-    
     - 32-bit (4 byte) compressed block size in Byte, encoded in little-Endian;
-    
     - 32-bit (4 byte) compressed block crc32, encoded in little-Endian;
-    
     - 32-bit (4 byte) compression Type, encoded in little-Endian;
-    
         - 0: no compression (format used in all uncompressed `.dvpl` files from SmartDLC)
-        
         - 1: unknown (probably LZ4)
-        
-        - 2: LZ4_HC (format used in all compressed `.dvpl` files from SmartDLC)
-        
+        - 2: LZ4_HC (format used in all compressed `.dvpl` files from SmartDLC)    
     - 32-bit (4 byte) Magic Number represents "DVPL" literals in utf8 encoding, encoded in big-Endian.
         
 ## Files in the Repo for reference:
 
 - `Extracted/barrel_2_dust.yaml` a sample file extracted from a `.dvpk` file, which is the archive format of the Smart DLC package
-
 - `Extracted/barrel_2_dust.yaml.dvpl` a sample `.dvpl` file extracted from a `.dvpk` file (same `.dvpk` file as the above sample)
-
 - `Converted/test.lz4` converted and compressed with LZ4_HC format, using an old version of `dvpl_convert.js` to convert them. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
-
 - `Converted/test2.lz4` converted and compressed with LZ4_HC format, using `dvpl_convert.js` to convert them, difference between this and `test.lz4` is that this is converted as a Block, instead of a stream, so no header/footer tags. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
-
 - `test.lz4.dvpl` is a file converted into DVPL format successfully. Original file is `Extracted/barrel_2_dust.yaml`.
 
 
 ## libraries used
 
 - `lz4` a port of the LZ4 compression algorithm (https://github.com/pierrec/node-lz4)
-
 - `buffer-crc32` for crc32 calculation included in footer for DVPL (might change to another library in future)
