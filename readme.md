@@ -10,11 +10,12 @@ there are a few things that need to be addressed:
 
 - [x] there are some unidentified headers and tail data in both lz4 file and dvpl file. will need to figure a bit more about them
 - [ ] set this as a usual script so it can be used to pack and unpack large directories.
+- [ ] Build a GUI interface to convert between the two without the need of Node.js and dependencies installed (Electron might be used)
 - [ ] improve it so it can also perform conversion on zipped files.
 
 ## Things that have been identified:
 
-- DVPL files are non-dvpl files compressed in LZ4_HC format, with frame header stripped and appended some footer instead (see below)
+- DVPL files are non-dvpl files compressed in LZ4_HC format, With custom footer data.
 - The last 20 bytes in DVPL files are in the following format:
     - 32-bit (4 byte) input size in Byte, encoded in little-Endian;
     - 32-bit (4 byte) compressed block size in Byte, encoded in little-Endian;
@@ -31,8 +32,7 @@ there are a few things that need to be addressed:
 - `Extracted/barrel_2_dust.yaml.dvpl` a sample `.dvpl` file extracted from a `.dvpk` file (same `.dvpk` file as the above sample)
 - `Converted/test.lz4` converted and compressed with LZ4_HC format, using an old version of `dvpl_convert.js` to convert them. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
 - `Converted/test2.lz4` converted and compressed with LZ4_HC format, using `dvpl_convert.js` to convert them, difference between this and `test.lz4` is that this is converted as a Block, instead of a stream, so no header/footer tags. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
-- `test.lz4.dvpl` is a file converted into DVPL format successfully. Original file is `Extracted/barrel_2_dust.yaml`.
-
+- `Converted/test.lz4.dvpl` is a file converted into DVPL format successfully. Original file is `Extracted/barrel_2_dust.yaml`.
 
 ## libraries used
 
