@@ -9,7 +9,7 @@ This converter aims to be able to directly convert between .dvpl and standard no
 there are a few things that need to be addressed:
 
 - [x] there are some unidentified headers and tail data in both lz4 file and dvpl file. will need to figure a bit more about them
-- [ ] set this as a usual script so it can be used to pack and unpack large directories.
+- [ ] setup usual scripts so it can be used to pack and unpack large directories.
 - [ ] Build a GUI interface to convert between the two without the need of Node.js and dependencies installed (Electron might be used)
 - [ ] improve it so it can also perform conversion on zipped files.
 
@@ -28,11 +28,7 @@ there are a few things that need to be addressed:
         
 ## Files in the Repo for reference:
 
-- `Extracted/barrel_2_dust.yaml` a sample file extracted from a `.dvpk` file, which is the archive format of the Smart DLC package
-- `Extracted/barrel_2_dust.yaml.dvpl` a sample `.dvpl` file extracted from a `.dvpk` file (same `.dvpk` file as the above sample)
-- `Converted/test.lz4` converted and compressed with LZ4_HC format, using an old version of `dvpl_convert.js` to convert them. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
-- `Converted/test2.lz4` converted and compressed with LZ4_HC format, using `dvpl_convert.js` to convert them, difference between this and `test.lz4` is that this is converted as a Block, instead of a stream, so no header/footer tags. came from the same original file `Extracted/barrel_2_dust.yaml` so just placed both so we can understand it more.
-- `Converted/test.lz4.dvpl` is a file converted into DVPL format successfully. Original file is `Extracted/barrel_2_dust.yaml`.
+All Reference File have been moved to `DVPLConverter_Demo` branch.
 
 ## libraries used
 
