@@ -73,7 +73,7 @@ function DVPLFooter(inputSize, compressedSize, crc32, type) {
 }
 
 /**
- * @param {Buffer} buffer last 20 Bytes of data from dvpl files
+ * @param {Buffer} buffer entire DVPL buffer
  * @return {Object} that contains the 4 elements of dvpl file footer data (for validation)
  */
 function readDVPLFooter(buffer) {
