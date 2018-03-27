@@ -5,6 +5,7 @@
   "main": "dvpl_convert.js",
   "dependencies": {
     "crc": "^3.5.0",
+    "fs-extra": "^5.0.0",
     "lz4": "^0.5.3"
   },
   "devDependencies": {},

@@ -9,10 +9,21 @@ This converter aims to be able to directly convert between .dvpl and standard no
 there are a few things that need to be addressed:
 
 - [x] there are some unidentified headers and tail data in both lz4 file and dvpl file. will need to figure a bit more about them
-- [ ] setup usual scripts so it can be used to pack and unpack large directories.
+- [x] setup usual scripts so it can be used to pack and unpack large directories.
 - [ ] Build a GUI interface to convert between the two without the need of Node.js and dependencies installed (Electron might be used)
 - [ ] improve it so it can also perform conversion on zipped files.
 
+
+## Set up environment for conversion
+
+- Install Node.js for your environment (https://nodejs.org/en/), download the Recommended version
+- Setup environment for Node-gyp (https://github.com/nodejs/node-gyp) scroll down to "Installation"
+- clone this repo
+- in this directory execute the command `npm install`
+- Create folders (to place your directories and files into it) named: 
+    - "toDVPL" (files that are going to be converted to `.dvpl` files)
+    - "fromDVPL" (files that are going to be converted back to non-dvpl files)
+- execute the command `node toDVPL` (for compression to dvpl files) or `node fromDVPL` (for decompression to non-dvpl files)
 ## Things that have been identified:
 
 - DVPL files are non-dvpl files compressed in LZ4_HC format, With custom footer data.
@@ -33,4 +44,4 @@ All Reference File have been moved to `DVPLConverter_Demo` branch.
 ## libraries used
 
 - `lz4` a port of the LZ4 compression algorithm (https://github.com/pierrec/node-lz4)
-- `buffer-crc32` for crc32 calculation included in footer for DVPL (might change to another library in future)
+- `crc32` for crc32 calculation included in footer for DVPL (might change to another library in future)
