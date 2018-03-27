@@ -12,11 +12,11 @@ function compressDVPL(buffer) {
     let footerBuffer;
     if (compressedBlockSize === 0 || compressedBlockSize >= buffer.length) {
         //cannot be compressed or it became bigger after compressed (why compress it then?)
-        footerBuffer = DVPLFooter(buffer.length, buffer.length, crc32.crc32(buffer), 0);
+        footerBuffer = toDVPLFooter(buffer.length, buffer.length, crc32.crc32(buffer), 0);
         return Buffer.concat([buffer, footerBuffer], buffer.length + 20);
     } else {
         output = output.slice(0, compressedBlockSize);
-        footerBuffer = DVPLFooter(buffer.length, compressedBlockSize, crc32.crc32(output), 2);
+        footerBuffer = toDVPLFooter(buffer.length, compressedBlockSize, crc32.crc32(output), 2);
         return Buffer.concat([output, footerBuffer], compressedBlockSize + 20);
     }
 }
@@ -54,7 +54,7 @@ function decompressDVPL(buffer) {
     return deDVPLBlock;
 }
 
-function DVPLFooter(inputSize, compressedSize, crc32, type) {
+function toDVPLFooter(inputSize, compressedSize, crc32, type) {
     let result = Buffer.alloc(20);
     result.writeInt32LE(inputSize, 0);
     result.writeInt32LE(compressedSize, 4);
@@ -89,4 +89,6 @@ fs.writeFileSync('./unCompressed.yaml', decompressDVPL(fs.readFileSync('./Extrac
 */
 
 // export the following functions
-module.exports = [compressDVPL, decompressDVPL, readDVPLFooter];
+exports.compressDVPl = compressDVPL;
+exports.decompressDVPL = decompressDVPL;
+exports.readDVPLFooter = readDVPLFooter;
