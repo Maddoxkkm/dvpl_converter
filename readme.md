@@ -1,6 +1,6 @@
 # DVPL and LZ4 relationship
 
-`.dvpl` is a new file format that is first seen used in the World of Tanks Blitz Client for Chinese Server, and also recently seen in Public Open Test Clients. 
+`.dvpl` is a new file format that is first seen used in the World of Tanks Blitz Client for Chinese Server, and now it's used on all known clients, except files that are contained within Android apks.
 
 This converter aims to be able to directly convert between .dvpl and standard non-dvpl files.
 
@@ -10,20 +10,19 @@ there are a few things that need to be addressed:
 
 - [x] there are some unidentified headers and tail data in both lz4 file and dvpl file. will need to figure a bit more about them
 - [x] setup usual scripts so it can be used to pack and unpack large directories.
-- [ ] Build a GUI interface to convert between the two without the need of Node.js and dependencies installed (Electron might be used)
-- [ ] improve it so it can also perform conversion on zipped files.
 
 
 ## Set up environment for conversion
 
 - Install Node.js for your environment (https://nodejs.org/en/), download the Recommended version
 - Setup environment for Node-gyp (https://github.com/nodejs/node-gyp) scroll down to "Installation"
+    - for Windows you should only need to do a simple command
+    - read the readme in that repo for what you'll need, and install them before proceeding.
 - clone this repo
-- in this directory execute the command `npm install`
-- Create folders (to place your directories and files into it) named: 
-    - "toDVPL" (files that are going to be converted to `.dvpl` files)
-    - "fromDVPL" (files that are going to be converted back to non-dvpl files)
-- execute the command `node toDVPL` (for compression to dvpl files) or `node fromDVPL` (for decompression to non-dvpl files)
+- in this directory execute the command `npm install -g` (or `sudo npm install -g` for MacOS and Linux)
+- now you can execute this compressor/ decompressor anywhere with `dvpl`.
+
+
 ## Things that have been identified:
 
 - DVPL files are non-dvpl files compressed in LZ4_HC format, With custom footer data.
