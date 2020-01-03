@@ -53,20 +53,20 @@ switch (realArgs[0].toLowerCase()) {
 
 async function compressionRecursion(originalsDir, keepOrignals = false) {
     let fileCount = 0;
-    const dirList = fs.readdirSync(originalsDir + "\\", { withFileTypes: true });
+    const dirList = fs.readdirSync(originalsDir + "/", { withFileTypes: true });
     dirList.forEach(async dirItem => {
         if (dirItem.isDirectory()) {
-            fileCount += await compressionRecursion(originalsDir + "\\" + dirItem.name, keepOrignals)
+            fileCount += await compressionRecursion(originalsDir + "/" + dirItem.name, keepOrignals)
         } else if (dirItem.isFile() && !dirItem.name.endsWith('.dvpl')) {
             try {
                 fileCount += 1
-                const fileData = fs.readFileSync(originalsDir + "\\" + dirItem.name)
+                const fileData = fs.readFileSync(originalsDir + "/" + dirItem.name)
                 const compressedBlock = dvpl.compressDVPl(fileData);
-                fs.writeFileSync(originalsDir + "\\" + dirItem.name + '.dvpl', compressedBlock)
-                console.log(`File ${originalsDir + "\\" + dirItem.name} has been successfully compressed into ${originalsDir + "\\" + dirItem.name}.dvpl`)
-                keepOrignals ? undefined : await fsPromise.unlink(originalsDir + "\\" + dirItem.name);
+                fs.writeFileSync(originalsDir + "/" + dirItem.name + '.dvpl', compressedBlock)
+                console.log(`File ${originalsDir + "/" + dirItem.name} has been successfully compressed into ${originalsDir + "/" + dirItem.name}.dvpl`)
+                keepOrignals ? undefined : await fsPromise.unlink(originalsDir + "/" + dirItem.name);
             } catch (err) {
-                console.log("\x1b[41m%\x1b[0m", `File ${originalsDir + "\\" + dirItem.name} Failed to convert due to ${err}`)
+                console.log("\x1b[41m%\x1b[0m", `File ${originalsDir + "/" + dirItem.name} Failed to convert due to ${err}`)
             }
         }
     })
@@ -76,21 +76,21 @@ async function compressionRecursion(originalsDir, keepOrignals = false) {
 
 async function decompressRecursion(originalsDir, keepOrignals = false) {
     let fileCount = 0;
-    const dirList = fs.readdirSync(originalsDir + "\\", { withFileTypes: true });
+    const dirList = fs.readdirSync(originalsDir + "/", { withFileTypes: true });
     dirList.forEach(async dirItem => {
         if (dirItem.isDirectory()) {
-            fileCount += await decompressRecursion(originalsDir + "\\" + dirItem.name, keepOrignals)
+            fileCount += await decompressRecursion(originalsDir + "/" + dirItem.name, keepOrignals)
         } else if (dirItem.isFile() && dirItem.name.endsWith('.dvpl')) {
             try {
                 fileCount += 1
-                const fileData = fs.readFileSync(originalsDir + "\\" + dirItem.name)
+                const fileData = fs.readFileSync(originalsDir + "/" + dirItem.name)
                 const newName = path.basename(dirItem.name, '.dvpl')
                 const decompressedBlock = dvpl.decompressDVPL(fileData);
-                fs.writeFileSync(originalsDir + "\\" + newName, decompressedBlock)
-                console.log(`File ${originalsDir + "\\" + dirItem.name} has been successfully decompressed into ${originalsDir + "\\" + newName}`)
-                keepOrignals ? undefined : await fsPromise.unlink(originalsDir + "\\" + dirItem.name);
+                fs.writeFileSync(originalsDir + "/" + newName, decompressedBlock)
+                console.log(`File ${originalsDir + "/" + dirItem.name} has been successfully decompressed into ${originalsDir + "/" + newName}`)
+                keepOrignals ? undefined : await fsPromise.unlink(originalsDir + "/" + dirItem.name);
             } catch (err) {
-                console.log("\x1b[41m%\x1b[0m", `File ${originalsDir + "\\" + dirItem.name} Failed to convert due to ${err}`)
+                console.log("\x1b[41m%\x1b[0m", `File ${originalsDir + "/" + dirItem.name} Failed to convert due to ${err}`)
             }
         }
     })
