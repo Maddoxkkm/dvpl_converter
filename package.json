@@ -1,12 +1,14 @@
 {
   "name": "dvpl-test",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "converter aims to be able to directly convert between .dvpl and standard non-dvpl files.",
   "main": "dvpl_convert.js",
+  "bin": {
+    "dvpl": "./dvpl.js"
+  },
   "dependencies": {
     "crc": "^3.5.0",
-    "fs-extra": "^5.0.0",
-    "lz4": "^0.5.3"
+    "lz4": "^0.6.3"
   },
   "devDependencies": {},
   "scripts": {
