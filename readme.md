@@ -19,7 +19,8 @@ there are a few things that need to be addressed:
     - for Windows you should only need to do a simple command
     - read the readme in that repo for what you'll need, and install them before proceeding.
 - clone this repo
-- in this directory execute the command `npm install -g` (or `sudo npm install -g` for MacOS and Linux)
+- in the directory execute `npm install` to install the dependencies that are required for the extractor
+- in the directory execute the command `npm install -g` (or `sudo npm install -g` for MacOS and Linux) (to install the extractor globally to be used)
 - now you can execute this compressor/ decompressor anywhere with `dvpl`.
 
 
