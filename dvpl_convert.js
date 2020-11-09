@@ -41,25 +41,28 @@ function decompressDVPL(buffer) {
         } else {
             return targetBlock;
         }
+    } else if (footerData.type === 1 || footerData.type === 2) {
+        // Ready to Decompress
+        let deDVPLBlock = Buffer.alloc(footerData.oSize);
+
+        let DecompressedBlockSize = lz4.decodeBlock(targetBlock, deDVPLBlock);
+
+        // If the decompressed size doesn't match original size stated in dvpl footer there is something wrong
+        if (DecompressedBlockSize !== footerData.oSize) throw 'DVPLDecodeSizeMismatch';
+
+        return deDVPLBlock;
+    } else {
+        throw "UNKNOWN DVPL FORMAT"
     }
 
-    // Ready to Decompress
-    let deDVPLBlock = Buffer.alloc(footerData.oSize);
-
-    let DecompressedBlockSize = lz4.decodeBlock(targetBlock, deDVPLBlock);
-
-    // If the decompressed size doesn't match original size stated in dvpl footer there is something wrong
-    if (DecompressedBlockSize !== footerData.oSize) throw 'DVPLDecodeSizeMismatch';
-
-    return deDVPLBlock;
 }
 
 function toDVPLFooter(inputSize, compressedSize, crc32, type) {
     let result = Buffer.alloc(20);
-    result.writeInt32LE(inputSize, 0);
-    result.writeInt32LE(compressedSize, 4);
+    result.writeUInt32LE(inputSize, 0);
+    result.writeUInt32LE(compressedSize, 4);
     result.writeUInt32LE(crc32, 8);
-    result.writeInt32LE(type, 12);
+    result.writeUInt32LE(type, 12);
     result.write("DVPL", 16, 4, 'utf8');
     return result;
 }
@@ -74,10 +77,10 @@ function readDVPLFooter(buffer) {
     if (footerBuffer.toString('utf8', 16, 20) !== 'DVPL' || footerBuffer.length !== 20) throw 'InvalidDVPLFooter';
 
     let footerObject = {};
-    footerObject.oSize = footerBuffer.readInt32LE(0);
-    footerObject.cSize = footerBuffer.readInt32LE(4);
+    footerObject.oSize = footerBuffer.readUInt32LE(0);
+    footerObject.cSize = footerBuffer.readUInt32LE(4);
     footerObject.crc32 = footerBuffer.readUInt32LE(8);
-    footerObject.type = footerBuffer.readInt32LE(12);
+    footerObject.type = footerBuffer.readUInt32LE(12);
     return footerObject;
 }
 

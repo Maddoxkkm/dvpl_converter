@@ -12,27 +12,22 @@ This converter aims to be able to directly convert between .dvpl and standard no
     - for Windows you should only need to do a simple command
     - read the readme in that repo for what you'll need, and install them before proceeding.
 - clone this repo
-- in the directory execute `npm install` to install the dependencies that are required for the extractor
 - in the directory execute the command `npm install -g` (or `sudo npm install -g` for MacOS and Linux) (to install the extractor globally to be used)
 - now you can execute this compressor/ decompressor anywhere with `dvpl`.
 
+## DVPL Specification:
 
-## Things that have been identified:
-
-- DVPL files are non-dvpl files compressed in LZ4_HC format, With custom footer data.
+- Starts with stream of Byte data, can be compressed or uncompressed.
 - The last 20 bytes in DVPL files are in the following format:
-    - 32-bit (4 byte) input size in Byte, encoded in little-Endian;
-    - 32-bit (4 byte) compressed block size in Byte, encoded in little-Endian;
-    - 32-bit (4 byte) compressed block crc32, encoded in little-Endian;
-    - 32-bit (4 byte) compression Type, encoded in little-Endian;
+    - UINT32LE input size in Byte
+    - UINT32LE compressed block size in Byte
+    - UINT32LE compressed block crc32
+    - UINT32LE compression Type
         - 0: no compression (format used in all uncompressed `.dvpl` files from SmartDLC)
-        - 1: unknown (probably LZ4)
-        - 2: LZ4_HC (format used in all compressed `.dvpl` files from SmartDLC)    
-    - 32-bit (4 byte) Magic Number represents "DVPL" literals in utf8 encoding, encoded in big-Endian.
-        
-## Files in the Repo for reference:
-
-All Reference File have been moved to `DVPLConverter_Demo` branch.
+        - 1: LZ4 (not observed but handled by this decompressor)
+        - 2: LZ4_HC (format used in all compressed `.dvpl` files from SmartDLC)
+        - 3: RFC1951 (not implemented in this decompressor since it's not observed)    
+    - 32-bit Magic Number represents "DVPL" literals in utf8 encoding, encoded in big-Endian.        
 
 ## libraries used
 
