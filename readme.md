@@ -11,7 +11,10 @@ This converter aims to be able to directly convert between .dvpl and standard no
 - Setup environment for Node-gyp (https://github.com/nodejs/node-gyp) scroll down to "Installation"
     - for Windows you should only need to do a simple command
     - read the readme in that repo for what you'll need, and install them before proceeding.
-- with commandline interface install with `npm install -g https://github.com/Maddoxkkm/dvpl_converter` (or with `sudo` if linux, and change it to a sensible link that you're currently reading from.)
+- Clone this repo / Download this entire repo to your device.
+- enter the directory where package.json sits with command line, and install with the following commands:
+    1. `npm install`
+    2. `npm install -g` or `sudo npm install -g` for linux
 - now you can execute this compressor/ decompressor anywhere with `dvpl` in commandline.
 
 ## DVPL Specification:

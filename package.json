@@ -4,7 +4,7 @@
   "description": "converter aims to be able to directly convert between .dvpl and standard non-dvpl files.",
   "main": "dvpl_convert.js",
   "bin": {
-    "dvpl": "./dvpl.js"
+    "dvpl": "dvpl.js"
   },
   "dependencies": {
     "crc": "^3.5.0",
