@@ -1,4 +1,4 @@
-# DVPL and LZ4 relationship
+# About DVPL
 
 `.dvpl` is a new file format that is first seen used in the World of Tanks Blitz Client for Chinese Server, and now it's used on all known clients, except files that are contained within Android apks.
 
@@ -31,4 +31,4 @@ This converter aims to be able to directly convert between .dvpl and standard no
 ## libraries used
 
 - `lz4` a port of the LZ4 compression algorithm (https://github.com/pierrec/node-lz4)
-- `crc32` for crc32 calculation included in footer for DVPL (might change to another library in future)
+- `crc32` for crc32 calculation included in footer for DVPL
