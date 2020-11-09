@@ -17,6 +17,22 @@ This converter aims to be able to directly convert between .dvpl and standard no
     2. `npm install -g` or `sudo npm install -g` for linux
 - now you can execute this compressor/ decompressor anywhere with `dvpl` in commandline.
 
+### Example
+```
+PS E:\DVPL_DECOMPRESS> dvpl decompress
+File E:\DVPL_DECOMPRESS/XML/chassis_effects.yaml.dvpl has been successfully decompressed into chassis_effects.yaml
+File E:\DVPL_DECOMPRESS/XML/explosion_effects.yaml.dvpl has been successfully decompressed into explosion_effects.yaml
+File E:\DVPL_DECOMPRESS/XML/right_border.xml.dvpl has been successfully decompressed into right_border.xml
+File E:\DVPL_DECOMPRESS/XML/item_defs/achievements.yaml.dvpl has been successfully decompressed into achievements.yaml
+File E:\DVPL_DECOMPRESS/XML/item_defs/item_types.xml.dvpl has been successfully decompressed into item_types.xml
+File E:\DVPL_DECOMPRESS/XML/material_kinds.xml.dvpl has been successfully decompressed into material_kinds.xml
+.
+.
+.
+.
+DECOMPRESSION FINISHED. DECOMPRESSED 631 files.
+```
+
 ## DVPL Specification:
 
 - Starts with stream of Byte data, can be compressed or uncompressed.
