@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "prepare": "echo prepare",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
