@@ -4,13 +4,6 @@
 
 This converter aims to be able to directly convert between .dvpl and standard non-dvpl files.
 
-## Work in progress
- 
-there are a few things that need to be addressed:
-
-- [x] there are some unidentified headers and tail data in both lz4 file and dvpl file. will need to figure a bit more about them
-- [x] setup usual scripts so it can be used to pack and unpack large directories.
-
 
 ## Set up environment for conversion
 
