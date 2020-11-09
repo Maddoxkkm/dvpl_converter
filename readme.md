@@ -12,7 +12,7 @@ This converter aims to be able to directly convert between .dvpl and standard no
     - for Windows you should only need to do a simple command
     - read the readme in that repo for what you'll need, and install them before proceeding.
 - Clone this repo / Download this entire repo to your device.
-- enter the directory where package.json sits with command line, and install with the following commands:
+- enter the directory where package.json sits with command line, and install with the following commands **IN ORDER**:
     1. `npm install`
     2. `npm install -g` or `sudo npm install -g` for linux
 - now you can execute this compressor/ decompressor anywhere with `dvpl` in commandline.
