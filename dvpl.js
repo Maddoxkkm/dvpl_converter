@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Load everything in
-const fs = require('fs').promises
+const fs = require('fs');
 const dvpl = require('./dvpl_convert.js');
 const path = require('path');
 
@@ -25,7 +25,7 @@ switch (realArgs[0].toLowerCase()) {
     case 'c':
         // compress
         dvplRecursion(process.cwd(), keeporingals, true).then(number => {
-            console.log(`COMPRESSION FINISHED. COMPRESSED ${number} files.`)
+            console.log(`COMPRESSION FINISHED. COMPRESSED ${number[0]} files. ${number[1]} Failed, ${number[2]} ignored.`)
         })
         break;
     case 'decompress':
@@ -33,7 +33,7 @@ switch (realArgs[0].toLowerCase()) {
     case 'deco':
     case 'd':
         dvplRecursion(process.cwd(), keeporingals, false).then(number => {
-            console.log(`DECOMPRESSION FINISHED. DECOMPRESSED ${number} files.`)
+            console.log(`DECOMPRESSION FINISHED. DECOMPRESSED ${number[0]} files. ${number[1]} Failed, ${number[2]} ignored.`)
         })
         // decompress
         break;
@@ -52,7 +52,7 @@ switch (realArgs[0].toLowerCase()) {
 
 // main code that does all the heavy lifting
 async function dvplRecursion(originalsDir, keepOrignals = false, compression = false) {
-    const dirList = await fs.readdir(originalsDir + "/", { withFileTypes: true });
+    const dirList = await fs.promises.readdir(originalsDir + "/", { withFileTypes: true });
     return await (dirList.map(async (dirItem) => {
             const isDecompression = !compression && dirItem.isFile() && dirItem.name.endsWith('.dvpl')
             const isCompression = compression && dirItem.isFile() && !dirItem.name.endsWith('.dvpl')
@@ -61,19 +61,23 @@ async function dvplRecursion(originalsDir, keepOrignals = false, compression = f
             }
             else if (isDecompression || isCompression) {
                 try {
-                    const fileData = await fs.readFile(originalsDir + "/" + dirItem.name)
+                    const fileData = fs.readFileSync(originalsDir + "/" + dirItem.name)
                     const processedBlock = isCompression ? dvpl.compressDVPl(fileData) : dvpl.decompressDVPL(fileData);
                     const newName = path.basename(dirItem.name, '.dvpl')
-                    await fs.writeFile(originalsDir + "/" + (isCompression ? dirItem.name + ".dvpl" : newName), processedBlock)
+                    fs.writeFileSync(originalsDir + "/" + (isCompression ? dirItem.name + ".dvpl" : newName), processedBlock)
                     console.log(`File ${originalsDir + "/" + dirItem.name} has been successfully ${isCompression ? "compressed" : "decompressed"} into ${originalsDir + "/" + isCompression ? newName : dirItem.name + ".dvpl"}`)
-                    keepOrignals ? undefined : await fs.unlink(originalsDir + "/" + dirItem.name);
-                    return 1
+                    keepOrignals ? undefined : fs.unlinkSync(originalsDir + "/" + dirItem.name);
+                    return [1,0,0]
                 } catch (err) {
                     console.log(`File ${originalsDir + "/" + dirItem.name} Failed to convert due to ${err}`)
-                    return 0
+                    return [0,1,0]
                 }
             } else {
-                return 0
+                return [0,0,1]
             }
-        })).reduce(async (a, b) => await a + await b, Promise.resolve(0))
+        })).reduce(async (a, b) => {
+            const na = await a;
+            const nb = await b;
+            return na.map((x,i) => x + nb[i])
+        }, Promise.resolve([0,0,0]))
 }

@@ -1,6 +1,6 @@
 {
   "name": "dvpl-test",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "converter aims to be able to directly convert between .dvpl and standard non-dvpl files.",
   "main": "dvpl_convert.js",
   "bin": {
@@ -10,7 +10,6 @@
     "crc": "^3.5.0",
     "lz4": "^0.6.3"
   },
-  "devDependencies": {},
   "scripts": {
     "prepare": "echo prepare",
     "test": "echo \"Error: no test specified\" && exit 1"
